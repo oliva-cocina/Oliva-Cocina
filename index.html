@@ -101,27 +101,50 @@
       opacity: 0.5;
     }
 
-    /* BANNER ESTILO MESA DULCE */
-    .tea-banner {
+    /* BANNER DE MESA DULCE CON VIDEO DE FONDO */
+    .tea-banner-video {
       position: relative;
       margin: 3rem 0 1.5rem 0;
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      background: linear-gradient(rgba(72, 82, 54, 0.82), rgba(72, 82, 54, 0.82)), url('https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=1200&q=80');
-      background-size: cover;
-      background-position: center;
-      padding: 2.5rem 1rem;
-      text-align: center;
       border: 1px solid var(--olive-green);
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--olive-green);
     }
 
-    .tea-banner h2 {
+    .banner-video-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+    }
+
+    .banner-overlay {
+      position: relative;
+      z-index: 2;
+      background: rgba(72, 82, 54, 0.65);
+      width: 100%;
+      height: 100%;
+      padding: 2.5rem 1rem;
+      text-align: center;
+    }
+
+    .banner-overlay h2 {
       font-family: 'Oswald', sans-serif;
       color: #ffffff;
       font-size: 1.6rem;
       letter-spacing: 1.5px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
       font-weight: 600;
       text-transform: uppercase;
     }
@@ -334,9 +357,14 @@
     <!-- GRID VIANDAS -->
     <div class="grid" id="menu-grid"></div>
 
-    <!-- BANNER VERDE DE MESA DULCE -->
-    <div class="tea-banner">
-      <h2>¡Mirá nuestra mesa Dulce y los especiales para la hora del Té!</h2>
+    <!-- BANNER CON VIDEO DE FONDO Y TÍTULO SOBREPUESTO -->
+    <div class="tea-banner-video">
+      <video autoplay loop muted playsinline class="banner-video-bg">
+        <source src="video-dulce.mp4" type="video/mp4">
+      </video>
+      <div class="banner-overlay">
+        <h2>¡Mirá nuestra mesa Dulce y los especiales para la hora del Té!</h2>
+      </div>
     </div>
 
     <!-- GRID DULCE Y HORA DEL TÉ -->
@@ -369,13 +397,13 @@
 
     // 2. LISTADO MESA DULCE / HORA DEL TÉ
     const sweetMenu = [
-      { id: 102, name: "Budín de Banana (2 porciones)", desc: "Húmedo y casero con banana natural", price: 7000, img: "budin-banana.jpeg" },
-      { id: 103, name: "Budín de Limón y amapolas(2 porciones)", desc: "Con glaseado y semillas de amapola", price: 7000, img: "budin-limon.jpeg" },
-      { id: 105, name: "Chocotorta (2 porciones)", desc: "La clásica chocotorta, bañada de chocolate.", price: 7000, img: "choco-torta.jpeg" },
+      { id: 102, name: "Budín de Banana (4 porciones)", desc: "Húmedo y casero con banana natural", price: 11000, img: "budin-banana.jpeg" },
+      { id: 103, name: "Budín de Limón y amapolas(4 porciones)", desc: "Con glaseado y semillas de amapola", price: 11000, img: "budin-limon.jpeg" },
+      { id: 105, name: "Alfajores de Chocotorta (4 u)", desc: "La clásica chocotorta, en un alfajor bañado de chocolate. Un viaje de ida.", price: 13700, img: "choco-torta.jpeg" },
+      { id: 106, name: "Crumble de Peras (4 porciones)", desc: "Crumble crocante con relleno de peras", price: 20000, img: "crumble-peras.jpeg" },
       { id: 107, name: "Mousse de Chocolate Fouquet´s (2 porciones)", desc: "Cremoso y suave mousse de chocolate artesanal", price: 15500, img: "mousse-chocolate.jpeg" },
       { id: 108, name: "Tiramisú (2 porciones)", desc: "Postre tradicional con crema mascarpone y café", price: 15500, img: "tiramisu.jpeg" },
-      { id: 109, name: "Key Lime Pie (2 porciones)", desc: "Cítrica y refrescante tarta de lima", price: 15500, img: "key-lime-pie.jpeg" },
-      { id: 110, name: "Pavlova con frutillas (2 porciones)", desc: "Merengue dulce de leche , crema y frutilla", price: 15500, img: "pavlova.jpeg" }
+      { id: 109, name: "Key Lime Pie (2 porciones)", desc: "Cítrica y refrescante tarta de lima", price: 15500, img: "key-lime-pie.jpeg" }
     ];
 
     const cart = {};
@@ -468,7 +496,6 @@
       setTimeout(() => { toast.classList.remove('show'); }, 3000);
     }
 
-    // AQUÍ ESTÁ LA FUNCIÓN DE WHATSAPP ACTUALIZADA Y CORREGIDA:
     function sendWhatsApp() {
       let savouryCount = 0;
       menu.forEach(item => { savouryCount += (cart[item.id] || 0); });
@@ -524,10 +551,8 @@
 
       const phone = "5491178204603";
       
-      // Enlace universal compatible con móviles y escritorio sin bloqueo emergente
       const whatsappUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
       
-      // Redirecciona directamente
       window.location.href = whatsappUrl;
     }
 
