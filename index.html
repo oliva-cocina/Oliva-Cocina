@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -135,6 +134,15 @@
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
+    .christmas-subtitles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 0.35rem;
+      margin-bottom: 1rem;
+    }
+
     .christmas-subtitle {
       display: inline-block;
       font-family: Georgia, serif;
@@ -144,35 +152,43 @@
       background-color: #eadbc6;
       padding: 0.15rem 1rem;
       border-radius: 999px;
-      margin-top: 0.35rem;
-      margin-bottom: 1rem;
     }
 
-    .christmas-price-wrap {
+    .christmas-prices-row {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 1.35rem;
     }
 
-    .christmas-sparkle {
-      color: var(--gold-accent);
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
-
-    .christmas-price {
-      display: inline-block;
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.65rem;
-      font-weight: 700;
-      color: var(--olive-green);
+    .christmas-price-card {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
       background-color: #fffdf9;
       border: 1.5px solid var(--olive-pill);
-      border-radius: 999px;
-      padding: 0.25rem 1.55rem;
+      border-radius: 18px;
+      padding: 0.45rem 1.35rem;
       box-shadow: 0 3px 10px rgba(72, 82, 54, 0.08);
+    }
+
+    .christmas-price-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--olive-light);
+    }
+
+    .christmas-price-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--olive-green);
+      line-height: 1.15;
     }
 
     .christmas-grid {
@@ -254,10 +270,10 @@
       background-color: var(--olive-green);
       color: #ffffff;
       border: none;
-      padding: 0.78rem 1.45rem;
+      padding: 0.78rem 1.35rem;
       border-radius: 25px;
       font-weight: 700;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       cursor: pointer;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -585,15 +601,23 @@
   <div class="container">
 
     <!-- TARJETA COMBO DE NAVIDAD DECORADA ESTILO FLYER (ARRIBA DE LOS PRECIOS DE VIANDAS) -->
-    <section class="christmas-flyer-box" aria-label="Combo de Navidad para 12 personas">
+    <section class="christmas-flyer-box" aria-label="Combo de Navidad para 12 personas y para 6 personas">
       <div class="christmas-ribbon">✦ Especial Fiestas • Óliva Cocina ✦</div>
       <h1 class="christmas-title">Combo de Navidad</h1>
-      <div class="christmas-subtitle">para 12 personas</div>
+      <div class="christmas-subtitles">
+        <span class="christmas-subtitle">para 12 personas</span>
+        <span class="christmas-subtitle">para 6 personas</span>
+      </div>
 
-      <div class="christmas-price-wrap">
-        <span class="christmas-sparkle">✦</span>
-        <div class="christmas-price">$ 970.000-</div>
-        <span class="christmas-sparkle">✦</span>
+      <div class="christmas-prices-row">
+        <div class="christmas-price-card">
+          <span class="christmas-price-label">12 personas</span>
+          <span class="christmas-price-value">$ 970.000-</span>
+        </div>
+        <div class="christmas-price-card">
+          <span class="christmas-price-label">6 personas</span>
+          <span class="christmas-price-value">$ 500.000-</span>
+        </div>
       </div>
 
       <div class="christmas-grid">
@@ -645,8 +669,11 @@
       </div>
 
       <div class="christmas-actions">
-        <button type="button" class="btn-christmas-wa" onclick="sendChristmasWhatsApp()">
-          Consultar Combo de Navidad ($ 970.000-)
+        <button type="button" class="btn-christmas-wa" onclick="sendChristmasWhatsApp('12 personas', '$ 970.000-')">
+          Consultar 12 personas ($ 970.000-)
+        </button>
+        <button type="button" class="btn-christmas-wa" onclick="sendChristmasWhatsApp('6 personas', '$ 500.000-')">
+          Consultar 6 personas ($ 500.000-)
         </button>
       </div>
     </section>
@@ -842,8 +869,8 @@
       setTimeout(() => { toast.classList.remove('show'); }, 3000);
     }
 
-    function sendChristmasWhatsApp() {
-      const message = "Hola Óliva Cocina! Quisiera consultar por el Combo de Navidad para 12 personas ($ 970.000-).";
+    function sendChristmasWhatsApp(opcionTexto, precioTexto) {
+      const message = `Hola Óliva Cocina! Quisiera consultar por el Combo de Navidad para ${opcionTexto} (${precioTexto}).`;
       const whatsappUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
       window.location.href = whatsappUrl;
     }
