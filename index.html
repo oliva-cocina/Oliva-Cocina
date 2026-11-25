@@ -270,23 +270,6 @@
       transform: translateY(-1px);
     }
 
-    .btn-music-toggle {
-      background-color: #fffdf9;
-      color: var(--olive-green);
-      border: 1.5px solid var(--olive-green);
-      padding: 0.75rem 1.25rem;
-      border-radius: 25px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      cursor: pointer;
-      letter-spacing: 0.4px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-music-toggle:hover {
-      background-color: #f7f1eb;
-    }
-
     /* CAJA DE PRECIOS VIANDAS */
     .price-box {
       border: 1.5px solid var(--olive-green);
@@ -574,6 +557,8 @@
 
   <div id="toast-notification">⚠️ Por favor elegí al menos 1 producto.</div>
 
+  <audio id="bg-christmas-audio" src="audio-merry-christmas.mp3" autoplay loop preload="auto"></audio>
+
   <!-- HEADER -->
   <header class="relative overflow-hidden bg-gradient-to-b from-[#f2e8de] via-[#f7f1eb] to-[#f7f1eb] border-b border-[#485236]/15 pt-8 pb-6 px-4">
     <div class="max-w-2xl mx-auto flex flex-col items-center justify-center text-center">
@@ -663,12 +648,7 @@
         <button type="button" class="btn-christmas-wa" onclick="sendChristmasWhatsApp()">
           Consultar Combo de Navidad ($ 970.000-)
         </button>
-        <button type="button" id="btn-music-toggle" class="btn-music-toggle" onclick="toggleChristmasMusic()">
-          🎵 Música navideña: OFF
-        </button>
       </div>
-
-      <audio id="christmas-audio" src="audio-merry-christmas.mp3" loop preload="metadata"></audio>
     </section>
     
     <!-- PRECIOS VIANDAS -->
@@ -737,36 +717,27 @@
 
     const cart = {};
     const phone = "5491178204603";
-    let christmasMusicPlaying = false;
+    const bgAudio = document.getElementById("bg-christmas-audio");
 
-    const christmasAudioEl = document.getElementById("christmas-audio");
-    const musicBtnEl = document.getElementById("btn-music-toggle");
-
-    if (christmasAudioEl) {
-      christmasAudioEl.addEventListener("error", () => {
-        christmasMusicPlaying = false;
-        if (musicBtnEl) {
-          musicBtnEl.innerText = "⚠️ Revisá audio-merry-christmas.mp3";
-        }
-      });
+    function startBackgroundChristmasAudio() {
+      if (!bgAudio) return;
+      bgAudio.volume = 0.3;
+      const playPromise = bgAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          ["pointerdown", "touchstart", "keydown", "scroll"].forEach((evt) => {
+            window.removeEventListener(evt, startBackgroundChristmasAudio);
+          });
+        }).catch(() => {});
+      }
     }
 
-    function toggleChristmasMusic() {
-      if (!christmasAudioEl || !musicBtnEl) return;
-
-      if (!christmasMusicPlaying) {
-        christmasAudioEl.volume = 0.35;
-        christmasAudioEl.play().then(() => {
-          christmasMusicPlaying = true;
-          musicBtnEl.innerText = "🔊 Música navideña: ON";
-        }).catch(() => {
-          showToast("⚠️ No se pudo reproducir audio-merry-christmas.mp3. Verificá que esté subido en el repo.");
-        });
-      } else {
-        christmasAudioEl.pause();
-        christmasMusicPlaying = false;
-        musicBtnEl.innerText = "🎵 Música navideña: OFF";
-      }
+    if (bgAudio) {
+      bgAudio.volume = 0.3;
+      window.addEventListener("DOMContentLoaded", startBackgroundChristmasAudio);
+      ["pointerdown", "touchstart", "keydown", "scroll"].forEach((evt) => {
+        window.addEventListener(evt, startBackgroundChristmasAudio, { passive: true });
+      });
     }
 
     function renderMenus() {
