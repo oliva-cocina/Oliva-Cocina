@@ -8,7 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,8 +17,10 @@
     :root {
       --bg-color: #f7f1eb;
       --olive-green: #485236;
+      --olive-pill: #717c55;
       --olive-light: #5f6c48;
       --terracota: #c85a32;
+      --gold-accent: #c49346;
       --text-dark: #2b2b2b;
       --card-bg: #ffffff;
     }
@@ -66,45 +68,97 @@
       padding: 0 1rem;
     }
 
-    /* BLOQUE COMBO DE NAVIDAD (ARRIBA DE PRECIOS DE VIANDAS) */
+    /* TARJETA COMBO DE NAVIDAD DECORADA ESTILO FLYER */
     .christmas-flyer-box {
-      background: #fffdf9;
-      border: 1.5px solid var(--olive-green);
-      border-radius: 16px;
-      padding: 1.5rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(196, 147, 70, 0.16), transparent 34%),
+        radial-gradient(circle at 88% 12%, rgba(113, 124, 85, 0.16), transparent 36%),
+        radial-gradient(circle at 50% 100%, rgba(200, 90, 50, 0.08), transparent 45%),
+        linear-gradient(180deg, #fbf6ef 0%, #f5ece0 100%);
+      border: 1.5px solid rgba(72, 82, 54, 0.35);
+      border-radius: 18px;
+      padding: 2rem 1.35rem 1.5rem 1.35rem;
       margin-bottom: 1.5rem;
-      box-shadow: 0 6px 20px rgba(72, 82, 54, 0.08);
+      box-shadow: 0 10px 26px rgba(72, 82, 54, 0.1);
       text-align: center;
     }
 
-    .christmas-badge {
-      display: inline-block;
-      background-color: var(--olive-green);
-      color: #ffffff;
-      font-size: 0.7rem;
+    .christmas-flyer-box::before {
+      content: "✦  ✧  ✦";
+      position: absolute;
+      top: 0.65rem;
+      left: 1rem;
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      color: var(--gold-accent);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .christmas-flyer-box::after {
+      content: "🎄 ✦";
+      position: absolute;
+      top: 0.55rem;
+      right: 1rem;
+      font-size: 0.95rem;
+      letter-spacing: 3px;
+      color: var(--olive-pill);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .christmas-ribbon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(196, 147, 70, 0.18);
+      border: 1px solid rgba(196, 147, 70, 0.45);
+      color: var(--olive-green);
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.6px;
       text-transform: uppercase;
-      padding: 0.35rem 0.9rem;
+      padding: 0.3rem 0.95rem;
       border-radius: 999px;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.45rem;
     }
 
     .christmas-title {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Alex Brush', 'Oswald', cursive;
       color: var(--olive-green);
-      font-size: 1.85rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      line-height: 1.15;
+      font-size: 2.85rem;
+      font-weight: 400;
+      line-height: 1.05;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
     .christmas-subtitle {
-      font-size: 0.85rem;
+      display: inline-block;
+      font-family: Georgia, serif;
+      font-size: 0.88rem;
       font-style: italic;
-      color: #555555;
-      margin-top: 0.2rem;
-      margin-bottom: 0.9rem;
+      color: var(--text-dark);
+      background-color: #eadbc6;
+      padding: 0.15rem 1rem;
+      border-radius: 999px;
+      margin-top: 0.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .christmas-price-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1.35rem;
+    }
+
+    .christmas-sparkle {
+      color: var(--gold-accent);
+      font-size: 1.05rem;
+      font-weight: 700;
     }
 
     .christmas-price {
@@ -113,11 +167,11 @@
       font-size: 1.65rem;
       font-weight: 700;
       color: var(--olive-green);
-      background-color: #f7f1eb;
-      border: 1.5px solid var(--olive-green);
+      background-color: #fffdf9;
+      border: 1.5px solid var(--olive-pill);
       border-radius: 999px;
-      padding: 0.3rem 1.5rem;
-      margin-bottom: 1.25rem;
+      padding: 0.25rem 1.55rem;
+      box-shadow: 0 3px 10px rgba(72, 82, 54, 0.08);
     }
 
     .christmas-grid {
@@ -125,48 +179,67 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1rem;
       text-align: left;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.35rem;
     }
 
     .christmas-col {
-      background-color: #faf6f0;
-      border: 1px solid rgba(72, 82, 54, 0.14);
-      border-radius: 12px;
-      padding: 0.9rem 1rem;
+      background-color: rgba(255, 253, 249, 0.88);
+      border: 1px solid rgba(113, 124, 85, 0.25);
+      border-radius: 14px;
+      padding: 0.95rem 1rem;
     }
 
-    .christmas-col h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: #ffffff;
-      background-color: var(--olive-green);
+    .christmas-pill {
       display: inline-block;
-      padding: 0.15rem 0.7rem;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #ffffff;
+      background-color: var(--olive-pill);
+      padding: 0.18rem 0.9rem;
       border-radius: 999px;
-      margin-bottom: 0.55rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .christmas-divider {
+      border: 0;
+      border-top: 1px solid rgba(196, 147, 70, 0.35);
+      margin: 0.65rem 0;
     }
 
     .christmas-col ul {
       list-style: none;
       font-size: 0.8rem;
-      line-height: 1.4;
+      line-height: 1.42;
       color: var(--text-dark);
     }
 
     .christmas-col li {
-      padding-left: 1rem;
+      padding-left: 1.05rem;
       position: relative;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.35rem;
     }
 
     .christmas-col li::before {
       content: "✦";
       position: absolute;
       left: 0;
-      color: var(--terracota);
-      font-size: 0.75rem;
+      color: var(--gold-accent);
+      font-size: 0.78rem;
+    }
+
+    .christmas-footer-decor {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--olive-green);
+      margin-bottom: 0.9rem;
     }
 
     .christmas-actions {
@@ -180,7 +253,7 @@
       background-color: var(--olive-green);
       color: #ffffff;
       border: none;
-      padding: 0.75rem 1.4rem;
+      padding: 0.78rem 1.45rem;
       border-radius: 25px;
       font-weight: 700;
       font-size: 0.82rem;
@@ -188,10 +261,12 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(72, 82, 54, 0.18);
     }
 
     .btn-christmas-wa:hover {
       background-color: var(--olive-light);
+      transform: translateY(-1px);
     }
 
     /* CAJA DE PRECIOS VIANDAS */
@@ -506,16 +581,21 @@
 
   <div class="container">
 
-    <!-- BLOQUE COMBO DE NAVIDAD (ARRIBA DE LOS PRECIOS DE VIANDAS) -->
+    <!-- TARJETA COMBO DE NAVIDAD DECORADA ESTILO FLYER (ARRIBA DE LOS PRECIOS DE VIANDAS) -->
     <section class="christmas-flyer-box" aria-label="Combo de Navidad para 12 personas">
-      <div class="christmas-badge">Edición Especial • Óliva Cocina</div>
+      <div class="christmas-ribbon">✦ Especial Fiestas • Óliva Cocina ✦</div>
       <h1 class="christmas-title">Combo de Navidad</h1>
-      <p class="christmas-subtitle">para 12 personas</p>
-      <div class="christmas-price">$ 970.000-</div>
+      <div class="christmas-subtitle">para 12 personas</div>
+
+      <div class="christmas-price-wrap">
+        <span class="christmas-sparkle">✦</span>
+        <div class="christmas-price">$ 970.000-</div>
+        <span class="christmas-sparkle">✦</span>
+      </div>
 
       <div class="christmas-grid">
         <div class="christmas-col">
-          <h3>Entradas</h3>
+          <div class="christmas-pill">Entradas</div>
           <ul>
             <li>Paté de hígado de pollo con hongos y tostaditas de pan de nuez</li>
             <li>Guacamole con batatas</li>
@@ -525,19 +605,20 @@
         </div>
 
         <div class="christmas-col">
-          <h3>Fríos / Mesa</h3>
+          <div class="christmas-pill">Fríos / Mesa</div>
           <ul>
             <li>Tarta de cebolla caramelizada y queso brie</li>
             <li>Vitel toné clásico</li>
           </ul>
-          <h3 style="margin-top: 0.7rem;">Ensalada</h3>
+          <hr class="christmas-divider">
+          <div class="christmas-pill">Ensalada</div>
           <ul>
             <li>Ensalada de peras, rúcula y queso azul con garrapiñada</li>
           </ul>
         </div>
 
         <div class="christmas-col">
-          <h3>Principales (a elección)</h3>
+          <div class="christmas-pill">Principales (a elección)</div>
           <ul>
             <li>Lomo con vegetales horneados y romero, acompañado de niditos de papa con champiñones gratinados</li>
             <li>Salmón o trucha con manteca de hierbas y limón, endivias y puré (o grillado con antipasto de verduras y salsa verde)</li>
@@ -545,13 +626,19 @@
         </div>
 
         <div class="christmas-col">
-          <h3>Postres</h3>
+          <div class="christmas-pill">Postres</div>
           <ul>
             <li>Tiramisú clásico</li>
             <li>Pavlova con curd de limón y frutas de estación</li>
             <li>Mousse de lima helada con frutos rojos</li>
           </ul>
         </div>
+      </div>
+
+      <div class="christmas-footer-decor">
+        <span>✧</span>
+        <span>ÓLIVA COCINA</span>
+        <span>✧</span>
       </div>
 
       <div class="christmas-actions">
