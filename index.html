@@ -1,611 +1,409 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Óliva Cocina - Menú Viandas & Dulces</title>
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Óliva Cocina — Combo de Navidad y Viandas</title>
   <style>
     :root {
-      --bg-color: #f7f1eb;
-      --olive-green: #485236;
-      --olive-light: #5f6c48;
-      --terracota: #c85a32;
-      --text-dark: #2b2b2b;
-      --card-bg: #ffffff;
+      --bg-crema: #f7f1e8;
+      --tarjeta-bg: #fffdf9;
+      --verde-oliva: #6f7954;
+      --verde-oscuro: #4f573b;
+      --texto-principal: #2b2623;
+      --texto-suave: #5e554e;
+      --borde-suave: #e3d8c8;
+      --acento-dorado: #b88a44;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-dark);
-      font-family: 'Montserrat', sans-serif;
-      padding-bottom: 110px;
+      font-family: Georgia, "Times New Roman", serif;
+      background-color: var(--bg-crema);
+      color: var(--texto-principal);
+      line-height: 1.5;
+      padding: 24px 16px;
     }
 
-    /* ENCABEZADO Y LOGO */
-    header {
-      text-align: center;
-      padding: 1.8rem 1rem 1rem 1rem;
-      background: rgba(247, 241, 235, 0.95);
-    }
-
-    .logo-img {
-      max-width: 320px;
-      width: 85%;
-      height: auto;
-      display: block;
+    .contenedor-pagina {
+      max-width: 760px;
       margin: 0 auto;
-      mix-blend-mode: multiply;
-      object-fit: contain;
     }
 
-    .subtitle {
+    /* BLOQUE COMBO DE NAVIDAD (ARRIBA DE PRECIOS DE VIANDAS) */
+    .combo-navidad-seccion {
+      background-color: var(--tarjeta-bg);
+      border: 1px solid var(--borde-suave);
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(43, 38, 35, 0.06);
+    }
+
+    .combo-badge {
+      display: inline-block;
+      background-color: var(--verde-oliva);
+      color: #ffffff;
+      font-family: system-ui, -apple-system, sans-serif;
       font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      color: var(--olive-green);
-      opacity: 0.85;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .combo-titulo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--verde-oscuro);
+      margin-bottom: 4px;
+    }
+
+    .combo-subtitulo {
+      font-style: italic;
+      color: var(--texto-suave);
+      margin-bottom: 14px;
+    }
+
+    .combo-precio {
+      display: inline-block;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--texto-principal);
+      border: 1.5px solid var(--verde-oliva);
+      border-radius: 999px;
+      padding: 6px 20px;
+      margin-bottom: 18px;
+      background-color: #faf6ef;
+    }
+
+    .combo-grilla {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .combo-bloque h3 {
+      display: inline-block;
+      background-color: var(--verde-oliva);
+      color: #ffffff;
+      font-style: italic;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 3px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .combo-bloque ul {
+      list-style: none;
+      font-size: 0.94rem;
+      color: var(--texto-principal);
+    }
+
+    .combo-bloque li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 5px;
+    }
+
+    .combo-bloque li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--acento-dorado);
+      font-size: 0.85rem;
+    }
+
+    .combo-acciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--borde-suave);
+    }
+
+    /* SECCIÓN VIANDAS DEBAJO DEL COMBO */
+    .viandas-seccion {
+      background-color: var(--tarjeta-bg);
+      border: 1px solid var(--borde-suave);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 6px 18px rgba(43, 38, 35, 0.04);
+    }
+
+    .viandas-seccion h2 {
+      font-size: 1.45rem;
+      color: var(--verde-oscuro);
+      margin-bottom: 14px;
+    }
+
+    .escalas-viandas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .escala-card {
+      background-color: var(--bg-crema);
+      border: 1px solid var(--borde-suave);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .escala-rango {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--texto-suave);
+      text-transform: uppercase;
+    }
+
+    .escala-precio {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--verde-oscuro);
       margin-top: 4px;
     }
 
-    /* CONTENEDOR Y CAJA DE PRECIOS */
-    .container {
-      max-width: 850px;
-      margin: 1rem auto;
-      padding: 0 1rem;
-    }
-
-    .price-box {
-      border: 1.5px solid var(--olive-green);
-      padding: 1rem;
+    .control-viandas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      background-color: #faf6ef;
       border-radius: 12px;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      display: flex;
-      justify-content: space-around;
+      border: 1px solid var(--borde-suave);
+      margin-bottom: 16px;
+    }
+
+    .contador-controles {
+      display: inline-flex;
       align-items: center;
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(4px);
-      box-shadow: 0 4px 15px rgba(72, 82, 54, 0.05);
+      gap: 10px;
+      font-family: system-ui, -apple-system, sans-serif;
     }
 
-    .price-item {
-      font-family: 'Oswald', sans-serif;
-      color: var(--olive-green);
-      font-size: 1.4rem;
-    }
-
-    .price-item small {
-      display: block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
-      color: var(--text-dark);
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .price-divider {
-      height: 32px;
-      border-left: 1.5px dashed var(--olive-green);
-      opacity: 0.5;
-    }
-
-    /* BANNER DE MESA DULCE CON VIDEO DE FONDO */
-    .tea-banner-video {
-      position: relative;
-      margin: 3rem 0 1.5rem 0;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      border: 1px solid var(--olive-green);
-      min-height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--olive-green);
-    }
-
-    .banner-video-bg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      z-index: 1;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-    }
-
-    .banner-overlay {
-      position: relative;
-      z-index: 2;
-      background: rgba(72, 82, 54, 0.65);
-      width: 100%;
-      height: 100%;
-      padding: 2.5rem 1rem;
-      text-align: center;
-    }
-
-    .banner-overlay h2 {
-      font-family: 'Oswald', sans-serif;
-      color: #ffffff;
-      font-size: 1.6rem;
-      letter-spacing: 1.5px;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    /* GRID DE TARJETAS */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      display: flex;
-      flex-direction: column;
-      border: 1px solid rgba(72, 82, 54, 0.12);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    .card-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .card-body {
-      padding: 0.9rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
-      text-align: center;
-    }
-
-    .card h3 {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--olive-green);
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-      line-height: 1.25;
-    }
-
-    .card p {
-      font-size: 0.75rem;
-      font-style: italic;
-      color: #666;
-      margin-bottom: 0.6rem;
-      line-height: 1.3;
-    }
-
-    /* ESTILOS PARA LA SECCIÓN ¿CÓMO REGENERARLO? */
-    .reheat-box {
-      margin-top: 0.4rem;
-      margin-bottom: 0.6rem;
-      padding-top: 0.5rem;
-      border-top: 1px solid rgba(72, 82, 54, 0.2);
-    }
-
-    .reheat-title {
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--olive-green);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 2px;
-    }
-
-    .reheat-text {
-      font-size: 0.7rem !important;
-      font-style: normal !important;
-      color: var(--text-dark) !important;
-      margin-bottom: 2px !important;
-    }
-
-    .reheat-link {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #2563eb;
-      text-decoration: underline;
-      transition: color 0.2s;
-    }
-
-    .reheat-link:hover {
-      color: #1d4ed8;
-    }
-
-    .item-price {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.25rem;
-      color: var(--olive-green);
-      font-weight: 700;
-      margin-bottom: 0.6rem;
-    }
-
-    .controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #f0eae1;
-      padding: 4px 12px;
-      border-radius: 20px;
-      border: 1px solid var(--olive-green);
-      width: 100%;
-      max-width: 140px;
-      margin: 0 auto;
-    }
-
-    .btn-qty {
-      background: var(--olive-green);
-      color: white;
-      border: none;
-      width: 26px;
-      height: 26px;
+    .btn-contador {
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      font-size: 1rem;
-      font-weight: 600;
-      line-height: 1;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .btn-qty:active {
-      background: var(--olive-light);
-    }
-
-    .qty { font-weight: 700; font-size: 0.9rem; color: var(--olive-green); }
-
-    /* BARRA INFERIOR DEL CARRITO */
-    .cart-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--olive-green);
-      color: white;
-      padding: 0.9rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 850px;
-      margin: 0 auto;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
-      z-index: 50;
-    }
-
-    .btn-whatsapp {
+      border: 1px solid var(--verde-oliva);
       background-color: #ffffff;
-      color: var(--olive-green);
-      border: none;
-      padding: 0.75rem 1.4rem;
-      border-radius: 25px;
+      color: var(--verde-oscuro);
+      font-size: 1.1rem;
       font-weight: 700;
-      font-size: 0.85rem;
       cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .btn-whatsapp:hover {
-      background-color: #f7f1eb;
-      transform: scale(1.02);
+    .btn-principal {
+      display: inline-block;
+      background-color: var(--verde-oliva);
+      color: #ffffff;
+      text-decoration: none;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
     }
 
-    #toast-notification {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-100px);
-      background-color: #2b2b2b;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      z-index: 100;
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      pointer-events: none;
-      border-left: 4px solid var(--olive-green);
+    .btn-principal:hover {
+      background-color: var(--verde-oscuro);
     }
 
-    #toast-notification.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
+    .btn-secundario {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--verde-oscuro);
+      text-decoration: none;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--verde-oliva);
+    }
+
+    .resumen-pedido {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      color: var(--texto-principal);
     }
   </style>
 </head>
 <body>
+  <main class="contenedor-pagina">
 
-  <div id="toast-notification">⚠️ Por favor elegí al menos 1 producto.</div>
+    <!-- 1. COMBO DE NAVIDAD (ARRIBA DE LOS PRECIOS DE VIANDAS) -->
+    <section class="combo-navidad-seccion" aria-labelledby="titulo-combo-navidad">
+      <span class="combo-badge">Edición Especial • 12 Personas</span>
+      <h1 id="titulo-combo-navidad" class="combo-titulo">Combo de Navidad</h1>
+      <p class="combo-subtitulo">para 12 personas — Óliva Cocina</p>
+      <div class="combo-precio">$ 970.000-</div>
 
-  <!-- HEADER -->
-  <header class="relative overflow-hidden bg-gradient-to-b from-[#f2e8de] via-[#f7f1eb] to-[#f7f1eb] border-b border-[#485236]/15 pt-8 pb-6 px-4">
-    <div class="max-w-2xl mx-auto flex flex-col items-center justify-center text-center">
-      
-      <div class="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full bg-[#485236]/10 border border-[#485236]/20 text-[#485236] text-[0.7rem] font-semibold tracking-wider uppercase">
-        <span class="w-2 h-2 rounded-full bg-[#485236] animate-pulse"></span>
-        Cocina Artesanal • Viandas & Dulces
+      <div class="combo-grilla">
+        <div class="combo-bloque">
+          <h3>Entradas</h3>
+          <ul>
+            <li>Paté de hígado de pollo con hongos y tostaditas de pan de nuez</li>
+            <li>Guacamole con batatas</li>
+            <li>Huevos rellenos mediterráneos (36 mitades)</li>
+            <li>Causitas limeñas con langostinos</li>
+          </ul>
+        </div>
+
+        <div class="combo-bloque">
+          <h3>Fríos / Mesa</h3>
+          <ul>
+            <li>Tarta de cebolla caramelizada y queso brie</li>
+            <li>Vitel toné clásico</li>
+          </ul>
+          <h3 style="margin-top: 12px;">Ensalada</h3>
+          <ul>
+            <li>Ensalada de peras, rúcula y queso azul con garrapiñada</li>
+          </ul>
+        </div>
+
+        <div class="combo-bloque">
+          <h3>Principales (a elección)</h3>
+          <ul>
+            <li>Lomo con vegetales horneados y romero, acompañado de niditos de papa con champiñones gratinados</li>
+            <li>Salmón o trucha con manteca de hierbas y limón, endivias y puré (o grillado con antipasto de verduras y salsa verde)</li>
+          </ul>
+        </div>
+
+        <div class="combo-bloque">
+          <h3>Postres</h3>
+          <ul>
+            <li>Tiramisú clásico</li>
+            <li>Pavlova con curd de limón y frutas de estación</li>
+            <li>Mousse de lima helada con frutos rojos</li>
+          </ul>
+        </div>
       </div>
 
-      <img 
-        src="logo-oliva-cocina.jpg" 
-        alt="Óliva Cocina" 
-        class="logo-img drop-shadow-md" 
-        onerror="if (!this.getAttribute('data-fallback')) { this.setAttribute('data-fallback', 'true'); this.src='etiqueta.png'; } else { this.onerror=null; this.src='https://placehold.co/320x100/f7f1eb/485236?text=%C3%93LIVA+COCINA'; }"
-      >
-      
-      <p class="subtitle mt-2 text-xs sm:text-sm text-[#485236] font-medium tracking-widest">
-        CONGELABLES • CASERAS • LISTAS PARA DISFRUTAR
+      <div class="combo-acciones">
+        <a
+          id="btn-reservar-combo"
+          class="btn-principal"
+          href="https://wa.me/?text=Hola%20%C3%93liva%20Cocina%2C%20quiero%20consultar%20por%20el%20Combo%20de%20Navidad%20para%2012%20personas%20(%24%20970.000-)."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Consultar / Reservar Combo por WhatsApp
+        </a>
+        <a class="btn-secundario" href="#precios-viandas">Ver precios de viandas</a>
+      </div>
+    </section>
+
+    <!-- 2. PRECIOS DE VIANDAS (DEBAJO DEL COMBO DE NAVIDAD) -->
+    <section id="precios-viandas" class="viandas-seccion" aria-labelledby="titulo-viandas">
+      <h2 id="titulo-viandas">Precios de Viandas</h2>
+
+      <div class="escalas-viandas">
+        <div class="escala-card">
+          <div class="escala-rango">5 a 9 viandas</div>
+          <div class="escala-precio">$ 13.500 c/u</div>
+        </div>
+        <div class="escala-card">
+          <div class="escala-rango">10 o más viandas</div>
+          <div class="escala-precio">$ 12.500 c/u</div>
+        </div>
+      </div>
+
+      <div class="control-viandas">
+        <span><strong>Cantidad de viandas:</strong></span>
+        <div class="contador-controles">
+          <button type="button" class="btn-contador" id="btn-restar" aria-label="Restar vianda">−</button>
+          <span id="cantidad-viandas">0</span>
+          <button type="button" class="btn-contador" id="btn-sumar" aria-label="Sumar vianda">+</button>
+        </div>
+      </div>
+
+      <p class="resumen-pedido">
+        <strong>Total ítems:</strong> <span id="total-items">0</span> —
+        <strong>Total:</strong> <span id="total-pesos">$ 0</span>
       </p>
 
-    </div>
-  </header>
+      <a
+        id="btn-pedir-viandas"
+        class="btn-principal"
+        href="https://wa.me/?text=Hola%20%C3%93liva%20Cocina%2C%20quiero%20hacer%20un%20pedido%20de%20viandas."
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Pedir por WhatsApp
+      </a>
+    </section>
 
-  <div class="container">
-    
-    <!-- PRECIOS VIANDAS -->
-    <div class="price-box">
-      <div class="price-item">
-        <small>5 A 9 VIANDAS</small>
-        $13.500 <span style="font-size:0.85rem; font-weight:400;">c/u</span>
-      </div>
-      <div class="price-divider"></div>
-      <div class="price-item">
-        <small>10 O MÁS VIANDAS</small>
-        $12.500 <span style="font-size:0.85rem; font-weight:400;">c/u</span>
-      </div>
-    </div>
-
-    <!-- GRID VIANDAS -->
-    <div class="grid" id="menu-grid"></div>
-
-    <!-- BANNER CON VIDEO DE FONDO Y TÍTULO SOBREPUESTO -->
-    <div class="tea-banner-video">
-      <video autoplay loop muted playsinline class="banner-video-bg">
-        <source src="video-dulce.mp4" type="video/mp4">
-      </video>
-      <div class="banner-overlay">
-        <h2>¡Mirá nuestra mesa Dulce y los especiales para la hora del Té!</h2>
-      </div>
-    </div>
-
-    <!-- GRID DULCE Y HORA DEL TÉ -->
-    <div class="grid" id="sweet-grid"></div>
-
-  </div>
-
-  <!-- BARRA INFERIOR CARRITO -->
-  <div class="cart-bar">
-    <div>
-      <span style="font-size:0.8rem; opacity: 0.9;">Total ítems: <strong id="total-count" style="font-size: 0.95rem;">0</strong></span><br>
-      <span style="font-size:1.15rem; font-weight:700;">Total: <span id="total-price">$0</span></span>
-    </div>
-    <button class="btn-whatsapp" onclick="sendWhatsApp()">Pedir por WhatsApp</button>
-  </div>
+  </main>
 
   <script>
-    // 1. LISTADO DE VIANDAS
-    const menu = [
-      { id: 1, name: "Bondiola desmenuzada con boniato", desc: "Bondiola de cerdo en cocción lenta de 4hs, boniatos asados a las finas hierbas", img: "bondiola.jpeg" },
-      { id: 2, name: "Wok de Pollo con arroz", desc: "Pechuga de pollo, cebolla, morrones, zanahoria salteadas crujiente y sésamo", img: "wok-pollo-arroz.jpeg", video: "video-wok-pollo.mp4" },
-      { id: 3, name: "Lasaña de verduras con carne", desc: "Verduras grilladas, carne, mozzarella, salsa fileto.", img: "lasana-verduras.jpeg" },
-      { id: 4, name: "Solomillo a las hierbas aromáticas", desc: "Solomillo de cerdo, cebolla, morrones grillados, tomate confitado, herbas aromaticas", img: "solomillo.jpeg" },
-      { id: 5, name: "Pan de carne", desc: "Roast beef picado, cebolla, morrones, boniato", img: "pan-carne.jpeg" },
-      { id: 6, name: "Pollo grillado con crema de limón + budin de calabaza", desc: "Pollo grillado + crema de limón, acompañado de budin de calabaza", img: "pollo-limon-budin.jpeg" },
-      { id: 8, name: "Tarta de calabaza", desc: "Masa quebrada casera, puré de calabaza horneada.", img: "tartas.jpeg" },
-      { id: 9, name: "Tarta de cebolla caramelizada", desc: "Masa quebrada casera, cebolla caramelizada.", img: "tarta-cebolla-caramelizada.jpeg" },
-      { id: 10, name: "Tarta de cebolla y puerro", desc: "Masa quebrada casera, cebolla y puerros rehogados.", img: "tartas.jpeg" }
-    ];
+    const btnRestar = document.getElementById("btn-restar");
+    const btnSumar = document.getElementById("btn-sumar");
+    const cantidadEl = document.getElementById("cantidad-viandas");
+    const totalItemsEl = document.getElementById("total-items");
+    const totalPesosEl = document.getElementById("total-pesos");
+    const btnPedirViandas = document.getElementById("btn-pedir-viandas");
 
-    // 2. LISTADO MESA DULCE
-    const sweetMenu = [
-      { id: 102, name: "Budín de Banana (2 porciones)", desc: "Húmedo y casero con banana natural", price: 5500, img: "budin-banana.jpeg" },
-      { id: 103, name: "Budín de Limón y amapolas(2 porciones)", desc: "Con glaseado y semillas de amapola", price: 5500, img: "budin-limon.jpeg" },
-      { id: 105, name: "Alfajores de Chocotorta (2 u)", desc: "La clásica chocotorta, en un alfajor bañado de chocolate. Un viaje de ida.", price: 7500, img: "choco-torta.jpeg" },
-      { id: 106, name: "Crumble de Manzana (rinde 2 porciones)", desc: "Crumble crocante con relleno de manzana", price: 10500, img: "crumble-peras.jpeg" },
-      { id: 107, name: "Mousse de Chocolate Fouquet´s (rinde 2 porciones)", desc: "Cremoso y suave mousse de chocolate artesanal", price: 12500, img: "mousse-chocolate.jpeg" },
-      { id: 109, name: "Key Lime Pie (rinde 2 porciones)", desc: "Cítrica y refrescante tarta de limon", price: 12500, img: "key-lime-pie.jpeg" } 
-    ];
+    let cantidadViandas = 0;
 
-    const cart = {};
-
-    function renderMenus() {
-      // Render Viandas
-      const container = document.getElementById('menu-grid');
-      container.innerHTML = menu.map(item => `
-        <div class="card">
-          <img 
-            src="${item.img}" 
-            alt="${item.name}" 
-            class="card-img" 
-            onerror="this.onerror=null; this.src='https://placehold.co/400x240/485236/FFFFFF?text=${encodeURIComponent(item.name)}';"
-          >
-          <div class="card-body">
-            <div>
-              <h3>${item.name}</h3>
-              ${item.desc ? `<p>(${item.desc})</p>` : ''}
-
-              ${item.video ? `
-                <div class="reheat-box">
-                  <div class="reheat-title">¿CÓMO REGENERARLO?</div>
-                  <p class="reheat-text">Hacé click en el siguiente enlace para ver el video:</p>
-                  <a href="${item.video}" target="_blank" class="reheat-link">VER VIDEO</a>
-                </div>
-              ` : ''}
-            </div>
-            <div class="controls">
-              <button class="btn-qty" onclick="updateQty(${item.id}, -1)">-</button>
-              <span class="qty" id="qty-${item.id}">0</span>
-              <button class="btn-qty" onclick="updateQty(${item.id}, 1)">+</button>
-            </div>
-          </div>
-        </div>
-      `).join('');
-
-      // Render Dulces
-      const sweetContainer = document.getElementById('sweet-grid');
-      sweetContainer.innerHTML = sweetMenu.map(item => `
-        <div class="card">
-          ${item.video ? `
-            <video autoplay loop muted playsinline class="card-img">
-              <source src="${item.video}" type="video/mp4">
-            </video>
-          ` : `
-            <img 
-              src="${item.img}" 
-              alt="${item.name}" 
-              class="card-img" 
-              onerror="this.onerror=null; this.src='https://placehold.co/400x240/485236/FFFFFF?text=${encodeURIComponent(item.name)}';"
-            >
-          `}
-          <div class="card-body">
-            <div>
-              <h3>${item.name}</h3>
-              ${item.desc ? `<p>(${item.desc})</p>` : ''}
-            </div>
-            <div class="item-price">$${item.price.toLocaleString('es-AR')}</div>
-            <div class="controls">
-              <button class="btn-qty" onclick="updateQty(${item.id}, -1)">-</button>
-              <span class="qty" id="qty-${item.id}">0</span>
-              <button class="btn-qty" onclick="updateQty(${item.id}, 1)">+</button>
-            </div>
-          </div>
-        </div>
-      `).join('');
+    function calcularPrecioUnitario(cantidad) {
+      if (cantidad <= 0) return 0;
+      if (cantidad >= 10) return 12500;
+      return 13500;
     }
 
-    function updateQty(id, change) {
-      cart[id] = (cart[id] || 0) + change;
-      if (cart[id] < 0) cart[id] = 0;
-      document.getElementById(`qty-${id}`).innerText = cart[id];
-      calculateTotal();
+    function formatearPesos(valor) {
+      return "$ " + valor.toLocaleString("es-AR");
     }
 
-    function calculateTotal() {
-      // Viandas
-      let savouryCount = 0;
-      menu.forEach(item => { savouryCount += (cart[item.id] || 0); });
-      let pricePerSavoury = savouryCount >= 10 ? 12500 : 13500;
-      let totalSavouryPrice = savouryCount * pricePerSavoury;
+    function actualizarResumen() {
+      const unitario = calcularPrecioUnitario(cantidadViandas);
+      const total = cantidadViandas * unitario;
 
-      // Dulce
-      let totalSweetPrice = 0;
-      let sweetCount = 0;
-      sweetMenu.forEach(item => {
-        const qty = cart[item.id] || 0;
-        sweetCount += qty;
-        totalSweetPrice += qty * item.price;
-      });
+      cantidadEl.textContent = cantidadViandas;
+      totalItemsEl.textContent = cantidadViandas;
+      totalPesosEl.textContent = formatearPesos(total);
 
-      const totalItems = savouryCount + sweetCount;
-      const totalPrice = totalSavouryPrice + totalSweetPrice;
-
-      document.getElementById('total-count').innerText = totalItems;
-      document.getElementById('total-price').innerText = `$${totalPrice.toLocaleString('es-AR')}`;
+      const mensaje =
+        cantidadViandas > 0
+          ? `Hola Óliva Cocina, quiero pedir ${cantidadViandas} viandas (Total estimado: ${formatearPesos(total)}).`
+          : "Hola Óliva Cocina, quiero consultar por las viandas.";
+      btnPedirViandas.href = "https://wa.me/?text=" + encodeURIComponent(mensaje);
     }
 
-    function showToast(text) {
-      const toast = document.getElementById('toast-notification');
-      toast.innerText = text;
-      toast.classList.add('show');
-      setTimeout(() => { toast.classList.remove('show'); }, 3000);
-    }
+    btnSumar.addEventListener("click", () => {
+      cantidadViandas += 1;
+      actualizarResumen();
+    });
 
-    function sendWhatsApp() {
-      let savouryCount = 0;
-      menu.forEach(item => { savouryCount += (cart[item.id] || 0); });
-
-      let sweetCount = 0;
-      sweetMenu.forEach(item => { sweetCount += (cart[item.id] || 0); });
-
-      if (savouryCount === 0 && sweetCount === 0) {
-        showToast("⚠️ Por favor selecciona al menos un producto.");
-        return;
+    btnRestar.addEventListener("click", () => {
+      if (cantidadViandas > 0) {
+        cantidadViandas -= 1;
+        actualizarResumen();
       }
+    });
 
-      if (savouryCount > 0 && savouryCount < 5) {
-        showToast("⚠️ Para viandas saladas, el mínimo es de 5 unidades.");
-        return;
-      }
-
-      let message = "Hola Óliva Cocina! Quisiera hacer el siguiente pedido:\n\n";
-      
-      let hasSavoury = false;
-      menu.forEach(item => {
-        if (cart[item.id] > 0) {
-          if (!hasSavoury) {
-            message += "🍱 *VIANDAS:*\n";
-            hasSavoury = true;
-          }
-          message += `• ${item.name} x${cart[item.id]}\n`;
-        }
-      });
-
-      let hasSweet = false;
-      sweetMenu.forEach(item => {
-        if (cart[item.id] > 0) {
-          if (!hasSweet) {
-            message += "\n☕ *MESA DULCE / HORA DEL TÉ:*\n";
-            hasSweet = true;
-          }
-          message += `• ${item.name} x${cart[item.id]}\n`;
-        }
-      });
-
-      const pricePerSavoury = savouryCount >= 10 ? 12500 : 13500;
-      let totalSavouryPrice = savouryCount * pricePerSavoury;
-      
-      let totalSweetPrice = 0;
-      sweetMenu.forEach(item => {
-        totalSweetPrice += (cart[item.id] || 0) * item.price;
-      });
-
-      const totalPrice = totalSavouryPrice + totalSweetPrice;
-
-      message += `\nTotal a pagar: $${totalPrice.toLocaleString('es-AR')}`;
-
-      const phone = "5491178204603";
-      
-      const whatsappUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-      
-      window.location.href = whatsappUrl;
-    }
-
-    renderMenus();
+    actualizarResumen();
   </script>
 </body>
 </html>
