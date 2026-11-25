@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -267,6 +268,23 @@
     .btn-christmas-wa:hover {
       background-color: var(--olive-light);
       transform: translateY(-1px);
+    }
+
+    .btn-music-toggle {
+      background-color: #fffdf9;
+      color: var(--olive-green);
+      border: 1.5px solid var(--olive-green);
+      padding: 0.75rem 1.25rem;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      letter-spacing: 0.4px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-music-toggle:hover {
+      background-color: #f7f1eb;
     }
 
     /* CAJA DE PRECIOS VIANDAS */
@@ -645,7 +663,12 @@
         <button type="button" class="btn-christmas-wa" onclick="sendChristmasWhatsApp()">
           Consultar Combo de Navidad ($ 970.000-)
         </button>
+        <button type="button" id="btn-music-toggle" class="btn-music-toggle" onclick="toggleChristmasMusic()">
+          🎵 Música navideña: OFF
+        </button>
       </div>
+
+      <audio id="christmas-audio" src="audio-merry-christamas.mp3" loop preload="none"></audio>
     </section>
     
     <!-- PRECIOS VIANDAS -->
@@ -714,6 +737,27 @@
 
     const cart = {};
     const phone = "5491178204603";
+    let christmasMusicPlaying = false;
+
+    function toggleChristmasMusic() {
+      const audio = document.getElementById("christmas-audio");
+      const btn = document.getElementById("btn-music-toggle");
+      if (!audio || !btn) return;
+
+      if (!christmasMusicPlaying) {
+        audio.volume = 0.35;
+        audio.play().then(() => {
+          christmasMusicPlaying = true;
+          btn.innerText = "🔊 Música navideña: ON";
+        }).catch(() => {
+          showToast("⚠️ Tocá el botón nuevamente para activar el audio.");
+        });
+      } else {
+        audio.pause();
+        christmasMusicPlaying = false;
+        btn.innerText = "🎵 Música navideña: OFF";
+      }
+    }
 
     function renderMenus() {
       // Render Viandas
