@@ -66,25 +66,107 @@
       padding: 0 1rem;
     }
 
-    /* BLOQUE FLYER COMBO DE NAVIDAD (ARRIBA DE PRECIOS DE VIANDAS) */
+    /* BLOQUE COMBO DE NAVIDAD (ARRIBA DE PRECIOS DE VIANDAS) */
     .christmas-flyer-box {
       background: #fffdf9;
       border: 1.5px solid var(--olive-green);
       border-radius: 16px;
-      padding: 1.25rem;
+      padding: 1.5rem 1.25rem;
       margin-bottom: 1.5rem;
       box-shadow: 0 6px 20px rgba(72, 82, 54, 0.08);
       text-align: center;
     }
 
-    .christmas-flyer-img {
-      display: block;
-      width: 100%;
-      max-width: 460px;
-      height: auto;
-      margin: 0 auto 1rem auto;
+    .christmas-badge {
+      display: inline-block;
+      background-color: var(--olive-green);
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 0.6rem;
+    }
+
+    .christmas-title {
+      font-family: 'Oswald', sans-serif;
+      color: var(--olive-green);
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.15;
+    }
+
+    .christmas-subtitle {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #555555;
+      margin-top: 0.2rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .christmas-price {
+      display: inline-block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--olive-green);
+      background-color: #f7f1eb;
+      border: 1.5px solid var(--olive-green);
+      border-radius: 999px;
+      padding: 0.3rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .christmas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      text-align: left;
+      margin-bottom: 1.25rem;
+    }
+
+    .christmas-col {
+      background-color: #faf6f0;
+      border: 1px solid rgba(72, 82, 54, 0.14);
       border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      padding: 0.9rem 1rem;
+    }
+
+    .christmas-col h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #ffffff;
+      background-color: var(--olive-green);
+      display: inline-block;
+      padding: 0.15rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 0.55rem;
+    }
+
+    .christmas-col ul {
+      list-style: none;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--text-dark);
+    }
+
+    .christmas-col li {
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+
+    .christmas-col li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--terracota);
+      font-size: 0.75rem;
     }
 
     .christmas-actions {
@@ -98,7 +180,7 @@
       background-color: var(--olive-green);
       color: #ffffff;
       border: none;
-      padding: 0.75rem 1.35rem;
+      padding: 0.75rem 1.4rem;
       border-radius: 25px;
       font-weight: 700;
       font-size: 0.82rem;
@@ -424,14 +506,54 @@
 
   <div class="container">
 
-    <!-- FLYER COMBO DE NAVIDAD (ARRIBA DE LOS PRECIOS DE VIANDAS) -->
+    <!-- BLOQUE COMBO DE NAVIDAD (ARRIBA DE LOS PRECIOS DE VIANDAS) -->
     <section class="christmas-flyer-box" aria-label="Combo de Navidad para 12 personas">
-      <img
-        src="flyer-combo-navidad.jpg"
-        alt="Flyer Combo de Navidad para 12 personas de Óliva Cocina - $ 970.000-"
-        class="christmas-flyer-img"
-        onerror="this.onerror=null; this.src='https://placehold.co/460x780/f7f1eb/485236?text=Combo+de+Navidad+-+%24+970.000-';"
-      >
+      <div class="christmas-badge">Edición Especial • Óliva Cocina</div>
+      <h1 class="christmas-title">Combo de Navidad</h1>
+      <p class="christmas-subtitle">para 12 personas</p>
+      <div class="christmas-price">$ 970.000-</div>
+
+      <div class="christmas-grid">
+        <div class="christmas-col">
+          <h3>Entradas</h3>
+          <ul>
+            <li>Paté de hígado de pollo con hongos y tostaditas de pan de nuez</li>
+            <li>Guacamole con batatas</li>
+            <li>Huevos rellenos mediterráneos (36 mitades)</li>
+            <li>Causitas limeñas con langostinos</li>
+          </ul>
+        </div>
+
+        <div class="christmas-col">
+          <h3>Fríos / Mesa</h3>
+          <ul>
+            <li>Tarta de cebolla caramelizada y queso brie</li>
+            <li>Vitel toné clásico</li>
+          </ul>
+          <h3 style="margin-top: 0.7rem;">Ensalada</h3>
+          <ul>
+            <li>Ensalada de peras, rúcula y queso azul con garrapiñada</li>
+          </ul>
+        </div>
+
+        <div class="christmas-col">
+          <h3>Principales (a elección)</h3>
+          <ul>
+            <li>Lomo con vegetales horneados y romero, acompañado de niditos de papa con champiñones gratinados</li>
+            <li>Salmón o trucha con manteca de hierbas y limón, endivias y puré (o grillado con antipasto de verduras y salsa verde)</li>
+          </ul>
+        </div>
+
+        <div class="christmas-col">
+          <h3>Postres</h3>
+          <ul>
+            <li>Tiramisú clásico</li>
+            <li>Pavlova con curd de limón y frutas de estación</li>
+            <li>Mousse de lima helada con frutos rojos</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="christmas-actions">
         <button type="button" class="btn-christmas-wa" onclick="sendChristmasWhatsApp()">
           Consultar Combo de Navidad ($ 970.000-)
