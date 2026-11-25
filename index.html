@@ -668,7 +668,7 @@
         </button>
       </div>
 
-      <audio id="christmas-audio" src="audio-merry-christamas.mp3" loop preload="none"></audio>
+      <audio id="christmas-audio" src="audio-merry-christmas.mp3" loop preload="metadata"></audio>
     </section>
     
     <!-- PRECIOS VIANDAS -->
@@ -739,23 +739,33 @@
     const phone = "5491178204603";
     let christmasMusicPlaying = false;
 
+    const christmasAudioEl = document.getElementById("christmas-audio");
+    const musicBtnEl = document.getElementById("btn-music-toggle");
+
+    if (christmasAudioEl) {
+      christmasAudioEl.addEventListener("error", () => {
+        christmasMusicPlaying = false;
+        if (musicBtnEl) {
+          musicBtnEl.innerText = "⚠️ Revisá audio-merry-christmas.mp3";
+        }
+      });
+    }
+
     function toggleChristmasMusic() {
-      const audio = document.getElementById("christmas-audio");
-      const btn = document.getElementById("btn-music-toggle");
-      if (!audio || !btn) return;
+      if (!christmasAudioEl || !musicBtnEl) return;
 
       if (!christmasMusicPlaying) {
-        audio.volume = 0.35;
-        audio.play().then(() => {
+        christmasAudioEl.volume = 0.35;
+        christmasAudioEl.play().then(() => {
           christmasMusicPlaying = true;
-          btn.innerText = "🔊 Música navideña: ON";
+          musicBtnEl.innerText = "🔊 Música navideña: ON";
         }).catch(() => {
-          showToast("⚠️ Tocá el botón nuevamente para activar el audio.");
+          showToast("⚠️ No se pudo reproducir audio-merry-christmas.mp3. Verificá que esté subido en el repo.");
         });
       } else {
-        audio.pause();
+        christmasAudioEl.pause();
         christmasMusicPlaying = false;
-        btn.innerText = "🎵 Música navideña: OFF";
+        musicBtnEl.innerText = "🎵 Música navideña: OFF";
       }
     }
 
